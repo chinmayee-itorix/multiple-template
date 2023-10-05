@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TargetEndpoint name="Acme-Bank-Account">
+    <Description>Acme Bank Account</Description>
+	<FaultRules>
+	</FaultRules>
+	<DefaultFaultRule>
+            <Step>
+                <Name>SF-PostflowResponseTargetLogAggregator</Name>
+            </Step>
+    	<AlwaysEnforce>true</AlwaysEnforce>
+	</DefaultFaultRule>
+	<PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>SF-PreflowRequestTargetLogAggregator</Name>
+            </Step>
+            <Step>
+                <Name>cf-Remove-Proxy-Auth-Header</Name>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+	<Flows>
+        <Flow name="findAllBankAccounts">
+        	<Condition>(targetOperation = &quot;findAllBankAccounts&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="updateBankAccount">
+        	<Condition>(targetOperation = &quot;updateBankAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="addBankAccount">
+        	<Condition>(targetOperation = &quot;addBankAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="depositInBankAccount">
+        	<Condition>(targetOperation = &quot;depositInBankAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="withdrawFromBankAccount">
+        	<Condition>(targetOperation = &quot;withdrawFromBankAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="findBankAccountById">
+        	<Condition>(targetOperation = &quot;findBankAccountById&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="deleteBankAccountById">
+        	<Condition>(targetOperation = &quot;deleteBankAccountById&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="depositInPrimaryAccount">
+        	<Condition>(targetOperation = &quot;depositInPrimaryAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="findAllPrimaryAccounts">
+        	<Condition>(targetOperation = &quot;findAllPrimaryAccounts&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="updatePrimaryAccount">
+        	<Condition>(targetOperation = &quot;updatePrimaryAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="addPrimaryAccount">
+        	<Condition>(targetOperation = &quot;addPrimaryAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="findPrimaryAccountById">
+        	<Condition>(targetOperation = &quot;findPrimaryAccountById&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="deletePrimaryAccountById">
+        	<Condition>(targetOperation = &quot;deletePrimaryAccountById&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+        <Flow name="withdrawFromPrimaryAccount">
+        	<Condition>(targetOperation = &quot;withdrawFromPrimaryAccount&quot;)</Condition>
+			<Request>
+			</Request>   
+			<Response>
+			</Response>
+        </Flow>
+	</Flows>
+    <PostFlow name="PostFlow">
+        <Request>
+            <Step>
+                <Name>SF-PostflowRequestTargetLogAggregator</Name>
+            </Step>
+        </Request>
+        <Response>
+            <Step>
+                <Name>SF-PostflowResponseTargetLogAggregator</Name>
+            </Step>
+        </Response>
+    </PostFlow>
+    <HTTPTargetConnection>
+    	<LoadBalancer>
+            <Server name="Acme-Bank-Account">
+                <IsEnabled>true</IsEnabled>
+            </Server>
+        </LoadBalancer>
+        <Path>/v1/{domain}/{environment}/</Path>
+    </HTTPTargetConnection>
+</TargetEndpoint>
